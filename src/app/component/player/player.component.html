@@ -1,0 +1,28 @@
+
+<div>
+
+  <div style="margin-left: 68%;">
+      <button  mat-raised-button color="grey"
+      type="button"
+      (click)="onGhinSyncClick()"
+      >GHIN Sync</button>
+      &nbsp;&nbsp;&nbsp;
+
+     <button mat-raised-button color="grey"
+    type="button"
+    (click)="onAddUserClick()"
+    >Add Player(+)</button>
+  </div>
+
+
+
+  <ag-grid-angular
+  class="ag-theme-quartz"
+  style="height: 900px; width:90%"
+  [defaultColDef]="defaultColDef"
+  [rowData]="players"
+  [columnDefs]="colDefs">
+  (gridReady)="onGridReady($event)"
+  [pagination]="true"
+  </ag-grid-angular>
+</div>
