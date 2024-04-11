@@ -7,6 +7,7 @@ import { EventRepresentation } from '../../services/api/models/event-representat
 import { throwToolbarMixedModesError } from '../../../../node_modules/@angular/material/toolbar';
 import { Tee } from 'src/app/services/api/models/tee';
 import { MatTabGroup } from '../../../../node_modules/@angular/material/tabs';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-gameplan',
@@ -19,7 +20,7 @@ export class GameplanComponent implements OnInit{
 //target = [];
 
 constructor(
-  private service: PlayerService, private builder: FormBuilder
+  private service: PlayerService, private builder: FormBuilder, private router:Router
 ) {
 
 }
@@ -284,6 +285,25 @@ onTabClick(event:any) {
 
 onSubmitGroup() {
   console.log('onSubmitGroup', this.teeList[0]);
+  this.event1.teeList=this.teeList;
+  this.service.createEventTee(this.event1).subscribe(res => {
+    console.log("calling event..."+res);
+    this.router.navigate(['gamerecord']);
+   // if(res.status == 200){
+      //this.router.navigate(['/'])
+      //alert(res.status);
+    //}
+    //else{
+      //alert(res.status);
+    //}
+    console.log("calling event...");
+  },
+
+    err => console.log("calling event...err"+err)
+  );
+
+
+
 }
 
 }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PlayerRepresentation} from "../services/api/models/player-representation";
+import {Tee} from "../services/api/models/tee";
+import { EventRepresentation } from '../services/api/models/event-representation';
 
 @Injectable({
   providedIn: 'root'
@@ -35,9 +37,26 @@ export class PlayerService {
     return this.http.post(playersUrl, data);
   }
 
-  doGrouping(players: Array<PlayerRepresentation>) {
-    const groupingUrl = `${this.baseUrl}players/grouping`;
-    console.log("groupingUrl="+groupingUrl);
-    return this.http.post(groupingUrl, players);
+  createEventTee(event: EventRepresentation) {
+    const eventGroupUrl = `${this.baseUrl}game/grouping`;
+    console.log("eventGroupUrl="+eventGroupUrl);
+    return this.http.post(eventGroupUrl, event);
+  }
+
+  getAllEvent() {
+    const eventsUrl = `${this.baseUrl}events`;
+    return this.http.get<Array<EventRepresentation>>(eventsUrl);
+  }
+
+  getEventById(id:any) {
+    const eventsUrl = `${this.baseUrl}events/`+id;
+    return this.http.get<EventRepresentation>(eventsUrl);
+  }
+
+
+  submitScore(event: EventRepresentation) {
+    const submitScoreUrl = `${this.baseUrl}game/submitScore`;
+    console.log("eventGroupUrl="+submitScoreUrl);
+    return this.http.post(submitScoreUrl, event);
   }
 }

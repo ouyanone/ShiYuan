@@ -27,6 +27,12 @@ import { GameplanComponent } from './component/gameplan/gameplan.component';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { GamerecordComponent } from './component/gamerecord/gamerecord.component';
+import { AboutusComponent } from './component/aboutus/aboutus.component';
+import { GameruleComponent } from './component/gamerule/gamerule.component';
+import { StatisticsComponent } from './component/statistics/statistics.component';
+import { DonationComponent } from './component/donation/donation.component';
+import { GameinputComponent } from './component/gameinput/gameinput.component';
 
 
 @NgModule({
@@ -46,7 +52,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
     PlayerComponent,
     GhinSyncComponent,
     EditPlayerComponent,
-    GameplanComponent
+    GameplanComponent,
+    GamerecordComponent,
+    AboutusComponent,
+    GameruleComponent,
+    StatisticsComponent,
+    DonationComponent,
+    GameinputComponent
   ],
   imports: [
     BrowserModule,
