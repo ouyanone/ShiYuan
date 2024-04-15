@@ -93,6 +93,15 @@ export class GamerecordComponent implements OnInit{
       }
     });
 
+    _popup.afterClosed().subscribe(item=>{
+      this.service.getAllEvent()
+      .subscribe({
+        next: (result) => {
+          this.events = result;
+
+        }
+      });
+    }) ;
 
   }
 

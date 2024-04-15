@@ -44,7 +44,7 @@
                   <div class="container-fluid">
                       <p></p>
                       <div class="container">
-                      <dual-list [sort]="keepSorted" [source]="source" [key]="key" [display]="display" [filter]="filter"
+                      <dual-list  [source]="source" [key]="key" [display]="display" [filter]="filter"
                         [(destination)]="confirmed" height="500px" [format]="format" [disabled]="disabled"></dual-list>
                       </div>
                   </div>
@@ -58,7 +58,13 @@
                       <mat-radio-button value="2">Based on handicap</mat-radio-button>
                       <mat-radio-button value="3">Manually assign group</mat-radio-button>
                   </mat-radio-group>
-                  <button type="submit">Generate Group</button>
+                  <div style="display:flex;" >
+
+
+                    <button type="button" (click)="addTee()">Add Tee</button>
+                    <button type="submit">Generate Group</button>
+                    <button type="button" (click)="resetTee()">Reset Tee</button>
+                  </div>
               </form>
             </mat-card-content>
         </mat-card>

@@ -109,7 +109,11 @@
 
 </div>
 
-<div style="width: 60%">
-    <button type="submit" (click)="onSubmitScore()">Submit Score</button>
+<div style="display:flex;" >
+    <button type="submit" (click)="deleteEvent()" *ngIf="editdata.status == 'OPEN'">Delete this Event</button>
+    <button type="submit" (click)="onSubmitScore()" *ngIf="editdata.status == 'OPEN'">Submit Score</button>
+
+    <button type="submit"  (click)="closepopup()" >Close</button>
 </div>
+
 

@@ -59,4 +59,10 @@ export class PlayerService {
     console.log("eventGroupUrl="+submitScoreUrl);
     return this.http.post(submitScoreUrl, event);
   }
+
+  deleteEvent(id:any) {
+    const eventUrl = `${this.baseUrl}events/`+id;
+    console.log("eventUrl="+eventUrl);
+    return this.http.delete(eventUrl);
+  }
 }

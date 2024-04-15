@@ -64,6 +64,7 @@ private confirmedPlayers: Array<PlayerRepresentation>=[];
 players: Array<PlayerRepresentation> = [];
 
 numberOfTees: number=1;
+totalNumberOfTees: number=0;
 teeList: Array<Tee>=[];
 
 
@@ -135,7 +136,7 @@ onGroupingSubmit(grouptab: MatTabGroup) {
 
   grouptab.selectedIndex=1;
 
-  this.teeList.length=0;
+  //this.teeList.length=0;
 
     this.sortedPlayers = this.confirmed.sort(function(a,b){
     return a.last3GameAvg >b.last3GameAvg?1:a.last3GameAvg <b.last3GameAvg?-1:0
@@ -153,7 +154,7 @@ onGroupingSubmit(grouptab: MatTabGroup) {
 
   for(let i=0;i<this.numberOfTees;i++) {
     let tee = new Tee();
-    tee.teeName =  (i+1).toString();
+    tee.teeName =  (i+1+this.totalNumberOfTees).toString();
 
       tee.teamA.push(this.sortedPlayers[i*4], this.sortedPlayers[i*4+3]);
       tee.teamB.push(this.sortedPlayers[i*4+1], this.sortedPlayers[i*4+2]);
@@ -304,6 +305,109 @@ onSubmitGroup() {
 
 
 
+}
+
+
+manualTeeList: Array<Tee>=[];
+addTee() {
+  console.log("adding tee:"+JSON.stringify(this.confirmed));
+  let tee = new Tee();
+  tee.teeName =  (this.totalNumberOfTees+1).toString();
+  this.totalNumberOfTees=this.totalNumberOfTees+1;
+  tee.teamA.push(this.confirmed[0], this.confirmed[1]);
+  tee.teamB.push(this.confirmed[2], this.confirmed[3]);
+
+
+  var teamAHandicap1 = 0;
+  var teamAHandicap2 = 0;
+
+  var teamBHandicap1 = 0;
+  var teamBHandicap2 = 0;
+  if (this.confirmed[0].handicap !==undefined) {
+    teamAHandicap1 = this.confirmed[0].handicap!;
+  }
+
+  if (this.confirmed[1]!==undefined && this.confirmed[1].handicap !==undefined) {
+    teamAHandicap2 = this.confirmed[1].handicap!;
+  }
+
+  if (this.confirmed[2]!==undefined  && this.confirmed[2].handicap !==undefined) {
+    teamBHandicap1 = this.confirmed[2].handicap!;
+  }
+
+  if (this.confirmed[3]!==undefined && this.confirmed[3].handicap !==undefined) {
+    teamBHandicap2 = this.confirmed[3].handicap!;
+  }
+  if (teamAHandicap2==0) {
+    tee.teamAavghandicap = teamAHandicap1;
+  } else {
+    tee.teamAavghandicap = (teamAHandicap1 + teamAHandicap2)/2;
+  }
+
+  if (teamBHandicap2==0) {
+    tee.teamBavghandicap = teamBHandicap1;
+  } else {
+    tee.teamBavghandicap = (teamBHandicap1 + teamBHandicap2)/2;
+  }
+
+//-------------------------------------------------------------------------------------------------------
+
+var teamA3Score1 = 0;
+var teamA3Score2 = 0;
+
+var teamB3Score1 = 0;
+var teamB3Score2 = 0;
+if (this.confirmed[0].last3GameAvg !==undefined) {
+  teamA3Score1 = this.confirmed[0].last3GameAvg!;
+}
+
+if (this.confirmed[1]!==undefined && this.confirmed[1].last3GameAvg !==undefined) {
+  teamA3Score2 = this.confirmed[1].last3GameAvg!;
+}
+
+if (this.confirmed[2]!==undefined  && this.confirmed[2].last3GameAvg !==undefined) {
+  teamB3Score1 = this.confirmed[2].last3GameAvg!;
+}
+
+if (this.confirmed[3]!==undefined && this.confirmed[3].last3GameAvg !==undefined) {
+  teamB3Score2 = this.confirmed[3].last3GameAvg!;
+}
+if (teamA3Score2==0) {
+  tee.teamAavgScore = teamA3Score1;
+} else {
+  tee.teamAavgScore = (teamA3Score1 + teamA3Score2)/2;
+}
+
+if (teamB3Score2==0) {
+  tee.teamBavgScore = teamB3Score1;
+} else {
+  tee.teamBavgScore = (teamB3Score1 + teamB3Score2)/2;
+}
+
+tee.teamAavghandicap=Math.round(tee.teamAavghandicap * 100) / 100;
+tee.teamBavghandicap=Math.round(tee.teamBavghandicap * 100) / 100;
+
+tee.teamAavgScore=Math.round(tee.teamAavgScore * 100) / 100;
+tee.teamBavgScore=Math.round(tee.teamBavgScore * 100) / 100;
+
+
+
+
+  this.teeList.push(tee)
+  this.confirmed = [];
+
+}
+
+resetTee() {
+  this.teeList.length=0;
+  this.confirmed = [];
+
+  this.totalTeamAHandicap = 0;
+  this.totalTeamA3Score = 0;
+  this.totalTeamBHandicap = 0;
+  this.totalTeamB3Score = 0;
+  this.totalNumberOfTees = 0;
+  this.numberOfTees = 1;
 }
 
 }

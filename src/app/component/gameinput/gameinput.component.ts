@@ -44,6 +44,7 @@ export class GameinputComponent  implements OnInit  {
       this.router.navigate(['gamerecord']);
 
       console.log("calling event...");
+      this.closepopup();
     },
 
       err => console.log("calling event...err"+err)
@@ -51,6 +52,24 @@ export class GameinputComponent  implements OnInit  {
 
   }
 
+  deleteEvent() {
+    console.log('deleting event');
+
+    this.service.deleteEvent(this.editdata.id).subscribe(res => {
+      console.log("calling event..."+res);
+      this.router.navigate(['gamerecord']);
+
+      this.closepopup();
+    },
+
+      err => console.log("calling event...err"+err)
+    );
+  }
+
+
+  closepopup() {
+    this.ref.close('Closed using function');
+  }
 
 
 }
