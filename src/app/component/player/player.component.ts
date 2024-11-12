@@ -140,6 +140,21 @@ export class PlayerComponent implements OnInit{
     }) ;
   }
 
+  onUpdateLast3() {
+    console.log("in  onUpdateLast3...");
+    this.service.updateLast3Score().subscribe(res => {
+      console.log("finished calling update last 3 score function.");
+      this.service.getAllPlayer()
+      .subscribe({
+        next: (result) => {
+          this.players = result;
+
+        }
+      });
+
+    });
+  }
+
 openEditPlayer(event:CellClickedEvent) {
   console.log("edit player is clicked"+event.value);
 

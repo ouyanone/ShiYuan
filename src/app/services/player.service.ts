@@ -8,8 +8,24 @@ import { EventRepresentation } from '../services/api/models/event-representation
   providedIn: 'root'
 })
 export class PlayerService {
-  private baseUrl = 'http://localhost:8080/';
+  private localServerSideUrl = 'http://localhost:8080/';
+  private baseUrl = this.getHost();
+
+
   constructor(private http: HttpClient) { }
+
+  getHost(): string {
+      if (window.location.port=='4200') {
+        return this.localServerSideUrl;
+        //return  window.location.protocol + '//' + window.location.host+'/';
+      } else {
+        return  window.location.protocol + '//' + window.location.host+'/';
+      }
+
+
+  }
+
+
 
   getAllPlayer() {
     const playersUrl = `${this.baseUrl}players`;
@@ -64,5 +80,10 @@ export class PlayerService {
     const eventUrl = `${this.baseUrl}events/`+id;
     console.log("eventUrl="+eventUrl);
     return this.http.delete(eventUrl);
+  }
+
+  updateLast3Score() {
+    const updateScoreUrl = `${this.baseUrl}player/last3score`;
+    return this.http.get(updateScoreUrl);
   }
 }
