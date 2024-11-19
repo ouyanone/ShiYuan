@@ -28,62 +28,62 @@ export class PlayerService {
 
 
   getAllPlayer() {
-    const playersUrl = `${this.baseUrl}players`;
+    const playersUrl = `${this.baseUrl}webapi/players`;
     return this.http.get<Array<PlayerRepresentation>>(playersUrl);
   }
 
   savePlayer(data:any) {
-    const playersUrl = `${this.baseUrl}players`;
+    const playersUrl = `${this.baseUrl}webapi/players`;
     return this.http.post(playersUrl, data);
   }
 
   editPlayer(data:any) {
-    const playersUrl = `${this.baseUrl}players`;
+    const playersUrl = `${this.baseUrl}webapi/players`;
     return this.http.post(playersUrl, data);
   }
 
   getPlayerById(id:any) {
-    const playersUrl = `${this.baseUrl}players/`+id;
+    const playersUrl = `${this.baseUrl}webapi/players/`+id;
     return this.http.get<PlayerRepresentation>(playersUrl);
 
   }
 
   updatePlayersHandicap(data:any) {
-    const playersUrl = `${this.baseUrl}players/ghin`;
+    const playersUrl = `${this.baseUrl}webapi/players/ghin`;
     return this.http.post(playersUrl, data);
   }
 
   createEventTee(event: EventRepresentation) {
-    const eventGroupUrl = `${this.baseUrl}game/grouping`;
+    const eventGroupUrl = `${this.baseUrl}webapi/game/grouping`;
     console.log("eventGroupUrl="+eventGroupUrl);
     return this.http.post(eventGroupUrl, event);
   }
 
   getAllEvent() {
-    const eventsUrl = `${this.baseUrl}events`;
+    const eventsUrl = `${this.baseUrl}webapi/events`;
     return this.http.get<Array<EventRepresentation>>(eventsUrl);
   }
 
   getEventById(id:any) {
-    const eventsUrl = `${this.baseUrl}events/`+id;
+    const eventsUrl = `${this.baseUrl}webapi/events/`+id;
     return this.http.get<EventRepresentation>(eventsUrl);
   }
 
 
   submitScore(event: EventRepresentation) {
-    const submitScoreUrl = `${this.baseUrl}game/submitScore`;
+    const submitScoreUrl = `${this.baseUrl}webapi/game/submitScore`;
     console.log("eventGroupUrl="+submitScoreUrl);
     return this.http.post(submitScoreUrl, event);
   }
 
   deleteEvent(id:any) {
-    const eventUrl = `${this.baseUrl}events/`+id;
+    const eventUrl = `${this.baseUrl}webapi/events/`+id;
     console.log("eventUrl="+eventUrl);
     return this.http.delete(eventUrl);
   }
 
   updateLast3Score() {
-    const updateScoreUrl = `${this.baseUrl}player/last3score`;
+    const updateScoreUrl = `${this.baseUrl}webapi/player/last3score`;
     return this.http.get(updateScoreUrl);
   }
 }

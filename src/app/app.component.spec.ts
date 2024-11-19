@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angularmaterial'`, () => {
+  it(`should have as title 'TendollarClub'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angularmaterial');
+    expect(app.title).toEqual('TendollarClub');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angularmaterial app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('TendollarClub app is running!');
   });
 });
