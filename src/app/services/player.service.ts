@@ -33,12 +33,12 @@ export class PlayerService {
   }
 
   savePlayer(data:any) {
-    const playersUrl = `${this.baseUrl}webapi/players`;
+    const playersUrl = `${this.baseUrl}webapi/admin/players`;
     return this.http.post(playersUrl, data);
   }
 
   editPlayer(data:any) {
-    const playersUrl = `${this.baseUrl}webapi/players`;
+    const playersUrl = `${this.baseUrl}webapi/admin/players`;
     return this.http.post(playersUrl, data);
   }
 
@@ -54,7 +54,7 @@ export class PlayerService {
   }
 
   createEventTee(event: EventRepresentation) {
-    const eventGroupUrl = `${this.baseUrl}webapi/game/grouping`;
+    const eventGroupUrl = `${this.baseUrl}webapi/admin/game/grouping`;
     console.log("eventGroupUrl="+eventGroupUrl);
     return this.http.post(eventGroupUrl, event);
   }
@@ -71,13 +71,13 @@ export class PlayerService {
 
 
   submitScore(event: EventRepresentation) {
-    const submitScoreUrl = `${this.baseUrl}webapi/game/submitScore`;
+    const submitScoreUrl = `${this.baseUrl}webapi/admin/game/submitScore`;
     console.log("eventGroupUrl="+submitScoreUrl);
     return this.http.post(submitScoreUrl, event);
   }
 
   deleteEvent(id:any) {
-    const eventUrl = `${this.baseUrl}webapi/events/`+id;
+    const eventUrl = `${this.baseUrl}webapi/admin/events/`+id;
     console.log("eventUrl="+eventUrl);
     return this.http.delete(eventUrl);
   }

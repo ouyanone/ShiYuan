@@ -79,10 +79,20 @@ export class PlayerComponent implements OnInit{
       next: (result) => {
         this.players = result;
 
+      },
+      error: (error) => {
+        // Handle errors if any
+        console.log('dddddddd');
+        console.error('error=', error.status);
+        if (error.status==0) {
+          window.location.href = 'https://shiyuan.club/oauth2/authorization/cognito';
+        }
+        
       }
     });
 
-
+ 
+   
 
   }
 

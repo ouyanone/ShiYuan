@@ -94,6 +94,14 @@ console.log('in doreset');
       this.sourcePlayers = this.players;
       this.confirmedPlayers = new Array<PlayerRepresentation>();
       this.usePlayers();
+    },
+    error: (error) => {
+      // Handle errors if any
+      console.error('error=', error.status);
+      if (error.status==0) {
+        window.location.href = 'https://shiyuan.club/oauth2/authorization/cognito';
+      }
+      
     }
   });
 
