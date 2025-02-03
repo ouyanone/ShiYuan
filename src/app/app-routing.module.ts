@@ -17,6 +17,7 @@ import { AboutusComponent } from './component/aboutus/aboutus.component';
 import { DonationComponent } from './component/donation/donation.component';
 import { GameruleComponent } from './component/gamerule/gamerule.component';
 import { StatisticsComponent } from './component/statistics/statistics.component';
+import { PhotosComponent } from './component/photos/photos.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path:'aboutus',component:AboutusComponent},
   {path:'donation',component:DonationComponent},
   {path:'gamerule',component:GameruleComponent},
+  {path:'photos',component:PhotosComponent},
   {path:'statistics',component:StatisticsComponent}
 ];
 

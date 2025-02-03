@@ -53,4 +53,41 @@ p {
   opacity: 0.4;
 }
 
+.user {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+  left: 5%;
+}
+
+.groupuser {
+
+
+  position: relative;
+  left: 20%;
+}
+
+
+.inlineh4 {
+  display: inline-block;
+
+
+}
+
+.inlineh1 {
+  display: inline-block;
+  color:rgb(223, 87, 25)
+
+}
+
+
+
+
 

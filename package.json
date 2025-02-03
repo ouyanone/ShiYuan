@@ -25,6 +25,7 @@
     "ag-grid-enterprise": "^31.1.1",
     "angular-dual-listbox": "^7.0.0",
     "caniuse-lite": "^1.0.30001680",
+    "ng2-file-upload": "^8.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.1"

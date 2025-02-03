@@ -33,6 +33,8 @@ import { GameruleComponent } from './component/gamerule/gamerule.component';
 import { StatisticsComponent } from './component/statistics/statistics.component';
 import { DonationComponent } from './component/donation/donation.component';
 import { GameinputComponent } from './component/gameinput/gameinput.component';
+import { PhotosComponent } from './component/photos/photos.component';
+
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { GameinputComponent } from './component/gameinput/gameinput.component';
     GameruleComponent,
     StatisticsComponent,
     DonationComponent,
-    GameinputComponent
+    GameinputComponent,
+    PhotosComponent
+ 
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,7 @@ import { GameinputComponent } from './component/gameinput/gameinput.component';
     MaterialModule,
     AngularDualListBoxModule,
     MatGridListModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

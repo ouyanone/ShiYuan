@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PlayerRepresentation} from "../services/api/models/player-representation";
 import {Tee} from "../services/api/models/tee";
 import { EventRepresentation } from '../services/api/models/event-representation';
+import { DonationRepresentation } from '../services/api/models/donation-representation';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,11 @@ export class PlayerService {
     return this.http.get<EventRepresentation>(eventsUrl);
   }
 
+  getUpcomingEvent() {
+    const eventsUrl = `${this.baseUrl}webapi/events/upcoming`;
+    return this.http.get<EventRepresentation>(eventsUrl);
+  }
+
 
   submitScore(event: EventRepresentation) {
     const submitScoreUrl = `${this.baseUrl}webapi/admin/game/submitScore`;
@@ -85,5 +91,15 @@ export class PlayerService {
   updateLast3Score() {
     const updateScoreUrl = `${this.baseUrl}webapi/player/last3score`;
     return this.http.get(updateScoreUrl);
+  }
+
+  getDonations() {
+    const eventsUrl = `${this.baseUrl}webapi/donations`;
+    return this.http.get<Array<DonationRepresentation>>(eventsUrl);
+  }
+
+  getLatestEvent() {
+    const eventsUrl = `${this.baseUrl}webapi/events/latest`;
+    return this.http.get<Array<EventRepresentation>>(eventsUrl);
   }
 }

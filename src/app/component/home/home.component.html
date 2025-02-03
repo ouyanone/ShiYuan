@@ -18,6 +18,170 @@
         We are members from Forsgate Country Club and we organize golf games between members and guests mostly in the weekends. The game could be in a couple of formats.
       </p>
 
+
+  
+    <div *ngIf="editdata">
+      <div *ngFor="let tee of (editdata.teeList);let i = index" style="width:80%;margin:0 auto;">
+        <div style="background-color:white ; font-family:Georgia, 'Times New Roman', Times, serif;" *ngIf="i === 0">
+          <h1 style="color: #006400;font-family:Georgia, 'Times New Roman', Times, serif;">*************** Upcoming Events ***************</h1>
+          <p>
+            {{editdata.eventDate}} @ {{editdata.course.courseName}}
+          </p>
+        </div>
+        <mat-card class="example-card" >
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Tee # {{tee.teeName}}</mat-card-title>
+              <mat-card-subtitle><label>Teetime:</label>  {{tee.teeTime}} </mat-card-subtitle>
+            </mat-card-header>
+      
+            <mat-card-content>
+       
+      
+                <mat-grid-list cols="2" rowHeight="80">
+                    <mat-grid-tile style="background-color: SeaShell">
+                      <div  *ngIf="tee.teeTeamXrefList[0]">
+                          <div class="user" style=" background-image: url('../../../assets/{{tee.teeTeamXrefList[0].playScoreList[0].player.fName}}.jpg');">
+      
+                          </div>
+                          <div>
+                            <h4 class="groupuser">{{tee.teeTeamXrefList[0].playScoreList[0].player.fName}} {{tee.teeTeamXrefList[0].playScoreList[0].player.lName}} <!--  - {{tee.teeTeamXrefList[0].playScoreList[0].player.chineseNickName}} --></h4>
+                            <h5 class="groupuser">handicap: {{tee.teeTeamXrefList[0].playScoreList[0].player.handicap}} - 3Avg: {{tee.teeTeamXrefList[0].playScoreList[0].entryScore}}</h5>
+
+                          </div>
+                    </div>
+                    </mat-grid-tile>
+      
+                    <mat-grid-tile style="background-color: LightCyan">
+                        <div  *ngIf="tee.teeTeamXrefList[1]">
+                          <div class="user" style=" background-image: url('../../../assets/{{tee.teeTeamXrefList[1].playScoreList[0].player.fName}}.jpg');">
+      
+                          </div>
+                          <div>
+                              <h4 class="groupuser">{{tee.teeTeamXrefList[1].playScoreList[0].player.fName}} {{tee.teeTeamXrefList[1].playScoreList[0].player.lName}} <!--  - {{tee.teeTeamXrefList[1].playScoreList[0].player.chineseNickName}}--></h4>
+                              <h5 class="groupuser">handicap: {{tee.teeTeamXrefList[1].playScoreList[0].player.handicap}} - 3Avg: {{tee.teeTeamXrefList[1].playScoreList[0].player.last3GameAvg}}</h5>
+ 
+                          </div>
+                      </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile style="background-color: SeaShell">
+                        <div  *ngIf="tee.teeTeamXrefList[0]">
+                            <div class="user" style=" background-image: url('../../../assets/{{tee.teeTeamXrefList[0].playScoreList[1].player.fName}}.jpg');">
+      
+                            </div>
+                            <div>
+                              <h4 class="groupuser">{{tee.teeTeamXrefList[0].playScoreList[1].player.fName}} {{tee.teeTeamXrefList[0].playScoreList[1].player.lName}} <!--  - {{tee.teeTeamXrefList[0].playScoreList[1].player.chineseNickName}} --></h4>
+                              <h5 class="groupuser">handicap: {{tee.teeTeamXrefList[0].playScoreList[1].player.handicap}} - 3Avg: {{tee.teeTeamXrefList[0].playScoreList[1].player.last3GameAvg}}</h5>
+
+                            </div>
+                      </div>
+                      </mat-grid-tile>
+                      <mat-grid-tile style="background-color: LightCyan">
+                          <div  *ngIf="tee.teeTeamXrefList[1]">
+                            <div class="user" style=" background-image: url('../../../assets/{{tee.teeTeamXrefList[1].playScoreList[1].player.fName}}.jpg');">
+                            </div>
+                            <div>
+                                <h4 class="groupuser">{{tee.teeTeamXrefList[1].playScoreList[1].player.fName}} {{tee.teeTeamXrefList[1].playScoreList[1].player.lName}} <!--  - {{tee.teeTeamXrefList[1].playScoreList[1].player.chineseNickName}}  --></h4>
+                                <h5 class="groupuser">handicap: {{tee.teeTeamXrefList[1].playScoreList[1].player.handicap}} - 3Avg: {{tee.teeTeamXrefList[1].playScoreList[1].player.last3GameAvg}}</h5>
+                            </div>
+                        </div>
+                      </mat-grid-tile>
+                  </mat-grid-list>
+            </mat-card-content>
+          </mat-card>
+      </div>
+    </div>
+
+      <div>
+        <br/>
+        <br/>
+        <h1 style="color: #006400;font-family:Georgia, 'Times New Roman', Times, serif;">*************** Latest Event Results***************</h1>
+      </div>
+
+<div *ngFor="let oldGame of olddata; let x=index" style="width:80%;margin:0 auto;">
+  <br/>
+  <h1 style="font:italic;color:blue">{{oldGame.eventDate}} @ {{oldGame.course.courseName}} </h1>
+  <div class="flex-container"  *ngFor="let tee of oldGame.teeList;let i = index" >
+
+    <mat-card class="example-card" >
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Tee # {{tee.teeName}}</mat-card-title>
+          <mat-card-subtitle><label>Teetime:</label>  {{tee.teeTime}} </mat-card-subtitle>
+        </mat-card-header>
+  
+        <mat-card-content>
+   
+  
+            <mat-grid-list cols="2" rowHeight="60">
+                <mat-grid-tile style="background-color: SeaShell">
+                  <div  *ngIf="tee.teeTeamXrefList[0]">
+                     <!-- <div class="user" style=" background-image: url('../../../assets/{{tee.teeTeamXrefList[0].playScoreList[0].player.fName}}.jpg');">
+  
+                      </div>  -->
+                      <div>
+                        <h4 class="inlineh4">{{tee.teeTeamXrefList[0].playScoreList[0].player.fName}} {{tee.teeTeamXrefList[0].playScoreList[0].player.lName}} 
+                          <!--  - {{tee.teeTeamXrefList[0].playScoreList[0].player.chineseNickName}}  -->
+                          
+                        </h4><h1 class="inlineh1">&nbsp;&nbsp;{{tee.teeTeamXrefList[0].playScoreList[0].score}}&nbsp;&nbsp;</h1>
+                        <mat-icon style="color:green;" *ngIf="tee.teeTeamXrefList[0].playScoreList[0].teeWin === 1">golf_course</mat-icon><mat-icon style="color:gold;" *ngIf="tee.teeTeamXrefList[0].playScoreList[0].teamWin === 1">emoji_events</mat-icon>
+
+                      </div>
+                </div>
+                </mat-grid-tile>
+  
+                <mat-grid-tile style="background-color: LightCyan">
+                    <div  *ngIf="tee.teeTeamXrefList[1]">
+                      <!-- <div class="user" style=" background-image: url('../../../assets/{{tee.teeTeamXrefList[1].playScoreList[0].player.fName}}.jpg');">
+  
+                      </div>  -->
+                      <div>
+                          <h4 class="inlineh4">{{tee.teeTeamXrefList[1].playScoreList[0].player.fName}} {{tee.teeTeamXrefList[1].playScoreList[0].player.lName}} 
+                            <!--  - {{tee.teeTeamXrefList[1].playScoreList[0].player.chineseNickName}}  -->
+                            
+                          </h4><h1 class="inlineh1">&nbsp;&nbsp;{{tee.teeTeamXrefList[1].playScoreList[0].score}}&nbsp;&nbsp;</h1>
+                          <mat-icon style="color:green;" *ngIf="tee.teeTeamXrefList[1].playScoreList[0].teeWin === 1">golf_course</mat-icon><mat-icon style="color:gold;" *ngIf="tee.teeTeamXrefList[1].playScoreList[0].teamWin === 1">emoji_events</mat-icon>
+
+                      </div>
+              
+                  </div>
+                </mat-grid-tile>
+                <mat-grid-tile style="background-color: SeaShell">
+                    <div  *ngIf="tee.teeTeamXrefList[0]">
+                        <!--<div class="user" style=" background-image: url('../../../assets/{{tee.teeTeamXrefList[0].playScoreList[1].player.fName}}.jpg');">
+  
+                        </div> -->
+                        <div>
+                          <h4 class="inlineh4">{{tee.teeTeamXrefList[0].playScoreList[1].player.fName}} {{tee.teeTeamXrefList[0].playScoreList[1].player.lName}} 
+                           <!--  - {{tee.teeTeamXrefList[0].playScoreList[1].player.chineseNickName}}  -->
+                            
+                          </h4><h1 class="inlineh1">&nbsp;&nbsp;{{tee.teeTeamXrefList[0].playScoreList[1].score}} &nbsp;&nbsp;</h1>
+                          <mat-icon style="color:green;" *ngIf="tee.teeTeamXrefList[0].playScoreList[1].teeWin === 1">golf_course</mat-icon><mat-icon style="color:gold;" *ngIf="tee.teeTeamXrefList[0].playScoreList[1].teamWin === 1">emoji_events</mat-icon>
+                        </div>
+                  </div>
+                  </mat-grid-tile>
+                  <mat-grid-tile style="background-color: LightCyan">
+                      <div  *ngIf="tee.teeTeamXrefList[1]">
+                        <!-- <div class="user" style=" background-image: url('../../../assets/{{tee.teeTeamXrefList[1].playScoreList[1].player.fName}}.jpg');">
+                        </div>  -->
+                        <div>
+                            <h4 class="inlineh4">{{tee.teeTeamXrefList[1].playScoreList[1].player.fName}} {{tee.teeTeamXrefList[1].playScoreList[1].player.lName}} 
+                             <!--  - {{tee.teeTeamXrefList[1].playScoreList[1].player.chineseNickName}} -->
+                              
+                            </h4><h1 class="inlineh1">&nbsp;&nbsp;{{tee.teeTeamXrefList[1].playScoreList[1].score}} &nbsp;&nbsp;</h1>
+                            <mat-icon style="color:green;" *ngIf="tee.teeTeamXrefList[1].playScoreList[1].teeWin === 1">golf_course</mat-icon><mat-icon style="color:gold;" *ngIf="tee.teeTeamXrefList[1].playScoreList[1].teamWin === 1">emoji_events</mat-icon>
+                        </div>
+                    </div>
+                  </mat-grid-tile>
+              </mat-grid-list>
+        </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+
+
+
+
       <div class="paragraph" >
           <iframe width="450" height="250" src="https://www.youtube.com/embed/_5k2NJedQZQ?si=mt00cM3y9jMmfBMd" frameborder="0" allowfullscreen></iframe>
       </div>
