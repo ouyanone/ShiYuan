@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FileUploader, FileLikeObject, FileSelectDirective } from 'ng2-file-upload';
+import {HttpClient} from "@angular/common/http";
+import {HttpHeaders} from "@angular/common/http";
  
 
 const URL = 'http://localhost:3000/fileupload/';
@@ -12,23 +13,43 @@ const URL = 'http://localhost:3000/fileupload/';
 export class PhotosComponent {
 
 
+  fileName = '';
 
-  public uploader: FileUploader = new FileUploader({
-    url: URL,
-    itemAlias: 'file',
-    disableMultipart : false,
-    autoUpload: true,
-    method: 'post',
-    allowedFileType: ['image', 'pdf']
-  });
+  photourl:any= '';
 
-  ngOnInit() {
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('File uploaded:', item, response, status, headers);
-    };
+  constructor(private http: HttpClient) {}
+
+  onFileSelected(event:any) {
+    console.log("on file selected...");
+      const file:File = event.target.files[0];
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'responseType' : 'text' 
+      });
+
+      if (file) {
+
+          this.fileName = file.name;
+
+          const lastModified = file.lastModified;
+
+          const formData = new FormData();
+
+          formData.append("file", file, file.name);
+          formData.append("lastModified", String(lastModified));
+
+          const upload$ = this.http.post("webapi/admin/upload", formData, {responseType: 'text'});
+
+          upload$.subscribe(
+            result => {
+              console.log("result="+result);
+              this.photourl = result;
+            
+          });
+      }
+
+      console.log("photourl="+this.photourl);
   }
-
- 
 
 }
